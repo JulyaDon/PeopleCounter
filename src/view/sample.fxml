@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="274.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<VBox prefHeight="274.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
     <children>
-        <Label text="Barcode:" />
-        <TextField fx:id="BarcodeTextField" />
+        <fx:include fx:id="tabCameras" source="barcode.fxml" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label prefHeight="13.0" prefWidth="110.0" text="Quantity of people: ">
