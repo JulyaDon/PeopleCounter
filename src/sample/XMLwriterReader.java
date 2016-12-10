@@ -1,15 +1,19 @@
 package sample;
 
 import java.io.*;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
  * Created by July on 10.12.2016.
  */
-public class XMLwriterReader {
-    /*String address;
-    public XMLwriterReader(String address){
+public class XMLwriterReader <T> {
+    String address;
+
+    public XMLwriterReader(String address) {
         this.address = address;
     }
+
     XStream xstream = new XStream(new DomDriver());
 
     public void WriteFile(T object, Class c) throws IOException {
@@ -35,5 +39,6 @@ public class XMLwriterReader {
         }
         T newObject = (T) in.readObject();
 
-        return newObject;*/
+        return newObject;
+    }
 }

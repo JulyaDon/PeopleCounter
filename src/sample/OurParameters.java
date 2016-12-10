@@ -3,7 +3,7 @@ package sample;
 /**
  * Created by July on 10.12.2016.
  */
-public class Parameters {
+public class OurParameters {
     private String event_id = "7";
     private String event_title = "Party Party";
     private String event_from = "2016-12-01 09:45:27";
