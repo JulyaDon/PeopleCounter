@@ -9,16 +9,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    @FXML private TextField BarcodeTextField;
+    @FXML BarcodeController barcodeController;
 
-    @FXML
-    public void onEnter(ActionEvent ae){
-        BarcodeTextField.setText("");
-    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        barcodeController = BarcodeController.instance;
+        barcodeController.init(this);
 
     }
 
@@ -27,7 +25,7 @@ public class Controller implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                BarcodeTextField.requestFocus();
+                barcodeController.BarcodeTextField.requestFocus();
             }
         });
     }
