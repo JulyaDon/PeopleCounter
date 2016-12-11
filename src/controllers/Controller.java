@@ -1,15 +1,21 @@
 package controllers;
 
-import javafx.application.Application;
+import controller.ControllerPeopleDisplay;
+import controller.ControllerSerialControlPanel;
+import controller.Sensor;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
+import model.DataClasses.Data;
+import model.DataClasses.DataCollect;
+import model.DataClasses.DataLogger;
+import sample.Parameters;
 import sample.OurParameters;
 import sample.Settings;
 import sample.XMLwriterReader;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +30,10 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        controllerSerialControlPanel = ControllerSerialControlPanel.Instance;
+        controllerPeopleDisplay = ControllerPeopleDisplay.Instance;
+
         barcodeController = BarcodeController.instance;
         barcodeController.init(this);
         try {
@@ -44,6 +54,11 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
         int a = 0;
+
+        controllerPeopleDisplay.init(this);
+        controllerSerialControlPanel.init(this);
+
+        t.start();
     }
 
 
@@ -75,5 +90,40 @@ public class Controller implements Initializable {
     }
 
     public void onTariff2clicked(ActionEvent actionEvent) {
+    }
+
+
+    /////////////////////////////////ANDREW'S PART////////////////////////////////////////
+    ControllerSerialControlPanel controllerSerialControlPanel;
+    ControllerPeopleDisplay controllerPeopleDisplay;
+
+    Parameters parameters = Parameters.getInstance();
+
+    Timer t = new Timer(parameters.getDataSendTimeout(), e -> onTimer());
+
+    public Sensor s1 = null;
+
+    DataCollect c = new DataCollect(100);
+    DataLogger dataLogger = new DataLogger();
+
+    private void onTimer(){
+        dataLogger.SendData();
+    }
+
+    public void CreateSensor(){
+        Parameters parameters = Parameters.getInstance();
+
+        s1 = new Sensor(controllerSerialControlPanel.getSerial());
+        s1.AddOnDataAvailableHandler(data -> onNewData(data));
+        s1.AddOnDataAvailableHandler(data -> Platform.runLater(() -> controllerPeopleDisplay.Draw(c.getDataFocusNew())) );
+        c.addOnCountChange(() -> Platform.runLater(() -> controllerPeopleDisplay.setCount(c.getCount())));
+        c.addOnCountChange(() -> {
+            if (c.getCountDifference()!=0)
+                dataLogger.addData( new Data(c.getCountDifference(),0));
+        });
+    }
+
+    private void onNewData(int data){
+        c.addData(data);
     }
 }

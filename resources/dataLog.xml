@@ -1,0 +1,12 @@
+<object-stream>
+  <java.lang.Class>
+    <dataLog>
+      <model.DataClasses.Data>
+        <in>12</in>
+        <out>0</out>
+        <transmitted>true</transmitted>
+        <date>2016-12-11 22:31:31.137 UTC</date>
+      </model.DataClasses.Data>
+    </dataLog>
+  </java.lang.Class>
+</object-stream>
