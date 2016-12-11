@@ -1,0 +1,46 @@
+<object-stream>
+  <java.lang.Class>
+    <app__title>zone1</app__title>
+    <app__id>111</app__id>
+    <event__id>1</event__id>
+    <event__title>NY Party</event__title>
+    <location>zone1_east</location>
+    <reportApiLink>http://tlreport.cifr.us/reportAccepter</reportApiLink>
+    <reportApiToken>tls</reportApiToken>
+    <counterApiLink>http://tlcounter.cifr.us/api/cam-add</counterApiLink>
+    <OurTariffs>
+      <sample.Tariffs>
+        <tariff__title>Бесплатный ТМ Шостка</tariff__title>
+        <tariff__id>1</tariff__id>
+        <tariff__cost>0</tariff__cost>
+        <show>false</show>
+        <Barcodes>
+          <int>79668321</int>
+          <int>79668322</int>
+          <int>79668323</int>
+        </Barcodes>
+      </sample.Tariffs>
+    <sample.Tariffs>
+        <tariff__title>Бесплатный VIP</tariff__title>
+        <tariff__id>2</tariff__id>
+        <tariff__cost>0</tariff__cost>
+        <show>false</show>
+        <Barcodes>
+          <int>89668321</int>
+          <int>89668322</int>
+          <int>89668323</int>
+        </Barcodes>
+    </sample.Tariffs>
+    <sample.Tariffs>
+        <tariff__title>Платный</tariff__title>
+        <tariff__id>3</tariff__id>
+        <tariff__cost>4</tariff__cost>
+        <show>true</show>
+        <Barcodes>
+          <int>1001001</int>
+        </Barcodes>
+      </sample.Tariffs>
+    </OurTariffs>
+    <FuckingTariffs reference="../OurTariffs/sample.Tariffs"/>
+  </java.lang.Class>
+</object-stream>
