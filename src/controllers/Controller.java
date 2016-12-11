@@ -22,8 +22,8 @@ public class Controller implements Initializable {
     OurParameters ourParameters = new OurParameters();
     Settings ourSettings = new Settings();
 
-    XMLwriterReader<OurParameters> writerParameters = new XMLwriterReader<>("src/files/parameters.xml");
-    XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>("src/files/settings.xml");
+    XMLwriterReader<OurParameters> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
+    XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>("resources/settings.xml");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
