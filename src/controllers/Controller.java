@@ -1,8 +1,5 @@
 package controllers;
 
-import controller.ControllerPeopleDisplay;
-import controller.ControllerSerialControlPanel;
-import controller.Sensor;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

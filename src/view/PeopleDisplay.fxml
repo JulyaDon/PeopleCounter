@@ -6,7 +6,7 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="400.0" prefWidth="800.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerPeopleDisplay">
+<VBox prefHeight="400.0" prefWidth="800.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerPeopleDisplay">
    <children>
       <LineChart fx:id="lineChart" animated="false" legendVisible="false" prefHeight="337.0" prefWidth="780.0" title="Diagram">
          <xAxis>

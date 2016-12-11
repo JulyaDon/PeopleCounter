@@ -1,6 +1,5 @@
-package controller;
+package controllers;
 
-import controllers.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
