@@ -1,0 +1,9 @@
+<object-stream>
+  <Parameter>
+    <location>zone1</location>
+    <apiURL>http://tlcounter.cifr.us/api/cam-add</apiURL>
+    <acceptLevel>180</acceptLevel>
+    <pulseWidthThreshold>1</pulseWidthThreshold>
+    <dataSendTimeout>60000</dataSendTimeout>
+  </Parameter>
+</object-stream>
