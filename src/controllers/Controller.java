@@ -26,16 +26,31 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         barcodeController = BarcodeController.instance;
         barcodeController.init(this);
+
+        //ЗАПИСЬ РЕПОРТОВ В XML
         try {
             writerParameters.WriteFile(ourParameters, OurParameters.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
+        try {
+            ourParameters = writerParameters.ReadFile(OurParameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //ЗАПИСЬ НАСТРОЕК В XML
         /*try {
             writerSettings.WriteFile(ourSettings, Settings.class);
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+
+        //СЧИТЫВАНИЕ НАСТРОЕК ИЗ XML
         try {
             ourSettings = writerSettings.ReadFile(Settings.class);
         } catch (IOException e) {
