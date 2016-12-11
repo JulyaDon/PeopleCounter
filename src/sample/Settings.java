@@ -1,5 +1,7 @@
 package sample;
 
+import java.util.ArrayList;
+
 /**
  * Created by July on 11.12.2016.
  */
@@ -12,5 +14,7 @@ public class Settings {
     private String reportApiLink = "http://tlreport.cifr.us/reportAccepter";
     private String reportApiToken = "tls";
     private String counterApiLink = "http://tlcounter.cifr.us/api/cam-add";
+    ArrayList<Tariffs> OurTariffs = new ArrayList<>();
+
 
 }

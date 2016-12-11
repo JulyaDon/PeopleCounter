@@ -12,4 +12,10 @@ public class Tariffs {
     boolean show = false; // скрытый	 тариф, не будет показан кассиру
     ArrayList<Integer> Barcodes = new ArrayList<>();
 
+    public void addBarcodes(){
+        Barcodes.add(0, 79668321);
+        Barcodes.add(1, 79668322);
+        Barcodes.add(2, 79668323);
+    }
+
 }
