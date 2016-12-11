@@ -13,9 +13,13 @@ public class Tariffs {
     ArrayList<Integer> Barcodes = new ArrayList<>();
 
     public void addBarcodes(){
-        Barcodes.add(0, 79668321);
-        Barcodes.add(1, 79668322);
-        Barcodes.add(2, 79668323);
+        Barcodes.add(79668321);
+        Barcodes.add(79668322);
+        Barcodes.add(79668323);
+    }
+    public ArrayList<Integer> getBarcodes(){
+        addBarcodes();
+        return Barcodes;
     }
 
 }

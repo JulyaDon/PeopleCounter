@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import sample.OurParameters;
+import sample.Settings;
 import sample.XMLwriterReader;
 
 import java.io.IOException;
@@ -16,8 +17,10 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     @FXML BarcodeController barcodeController;
     OurParameters ourParameters = new OurParameters();
+    Settings ourSettings = new Settings();
 
     XMLwriterReader<OurParameters> writerParameters = new XMLwriterReader<>("src/files/parameters.xml");
+    XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>("src/files/settings.xml");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -28,6 +31,19 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        /*try {
+            writerSettings.WriteFile(ourSettings, Settings.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        try {
+            ourSettings = writerSettings.ReadFile(Settings.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        int a = 0;
     }
 
 
