@@ -54,4 +54,10 @@ public class Controller implements Initializable {
 
     public void Refresh2clicked(ActionEvent actionEvent) {
     }
+
+    public void onTariff1clicked(ActionEvent actionEvent) {
+    }
+
+    public void onTariff2clicked(ActionEvent actionEvent) {
+    }
 }
