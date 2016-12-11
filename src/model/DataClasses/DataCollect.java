@@ -1,6 +1,6 @@
 package model.DataClasses;
 
-import model.ParametersClasses.Parameters;
+import sample.Parameters;
 
 import java.util.ArrayList;
 

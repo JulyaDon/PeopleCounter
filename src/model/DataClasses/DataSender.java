@@ -1,6 +1,6 @@
 package model.DataClasses;
 
-import model.ParametersClasses.Parameters;
+import sample.Parameters;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -24,8 +24,9 @@ public class DataSender {
 
     private String ApiURL = parameters.getApiURL();
 
-    public void SendData (Data data){
+    public boolean SendData (Data data){
 
+        boolean result = false;
         try {
 
             String urlStr = ApiURL;
@@ -39,29 +40,28 @@ public class DataSender {
             HttpClient client = new DefaultHttpClient();
             HttpPost post = new HttpPost(urlStr);
 
-            Thread thread = new Thread(() -> {
-                try {
-                    post.setEntity(entityJson);
+            try {
+                post.setEntity(entityJson);
 
-                    org.apache.http.HttpResponse response = client.execute(post);
+                org.apache.http.HttpResponse response = client.execute(post);
 
-                    BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-                    String line = "";
-                    while ((line = rd.readLine()) != null) {
-                        System.out.println(line);
-                        data.setTransmitted(true);
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                String line = "";
+                while ((line = rd.readLine()) != null) {
+                    System.out.println(line);
+                    //data.setTransmitted(true);
+                    result = true;
                 }
-            });
 
-            thread.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
+        return result;
     }
 
 }

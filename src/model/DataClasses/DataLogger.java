@@ -1,6 +1,6 @@
 package model.DataClasses;
 
-import model.ParametersClasses.XMLwriterReader;
+import sample.XMLwriterReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,10 +18,19 @@ public class DataLogger implements DataCollect.ICountChangeHandler {
     private ArrayList<Data> dataLog = new ArrayList<>();
 
     public DataLogger(){
-        XMLwriterReader xmlWriterReader = new XMLwriterReader();
+        XMLwriterReader<model.DataClasses.DataLogger> xmlWriterReader = new XMLwriterReader("resources/dataLog.xml");
+/*
         try {
-            dataLog = xmlWriterReader.ReadDataLog().dataLog;
+            xmlWriterReader.WriteFile(this, DataLogger.class);
         } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        try {
+            dataLog = xmlWriterReader.ReadFile(model.DataClasses.DataLogger.class).dataLog;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -29,9 +38,9 @@ public class DataLogger implements DataCollect.ICountChangeHandler {
 
     public void addData(Data data){
         dataLog.add(data);
-        XMLwriterReader xmlWriterReader = new XMLwriterReader();
+        XMLwriterReader xmlWriterReader = new XMLwriterReader("resources/dataLog.xml");
         try {
-            xmlWriterReader.WriteDataLog(this);
+            xmlWriterReader.WriteFile(this,DataLogger.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,16 +52,16 @@ public class DataLogger implements DataCollect.ICountChangeHandler {
 
         dataLog = GroupedDataLog;
 
-        XMLwriterReader xmlWriterReader = new XMLwriterReader();
-        try {
-            xmlWriterReader.WriteDataLog(this);
-        } catch (IOException e) {
-            e.printStackTrace();
+        DataSender dataSender = new DataSender();
+        for (int i = 0; i < dataLog.size() ; i++) {
+            if(!dataLog.get(i).isTransmitted()) dataLog.get(i).setTransmitted( dataSender.SendData(dataLog.get(i)) );
         }
 
-        DataSender dataSender = new DataSender();
-        for (Data d: dataLog) {
-            if(!d.isTransmitted()) dataSender.SendData(d);
+        XMLwriterReader xmlWriterReader = new XMLwriterReader("resources/dataLog.xml");
+        try {
+            xmlWriterReader.WriteFile(this,DataLogger.class);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

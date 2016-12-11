@@ -1,4 +1,4 @@
-package model.ParametersClasses;
+package sample;
 
 import java.io.IOException;
 
@@ -15,15 +15,19 @@ public class Parameters {
 
     public static Parameters getInstance(){
 
+
+
         if(instance == null){
-            XMLwriterReader reader = new XMLwriterReader();
+            XMLwriterReader<sample.Parameters> reader = new XMLwriterReader<>("resources/controller_parameters.xml");
 
             try {
-                instance = reader.ReadParameters();
+                instance = reader.ReadFile(Parameters.class);
             } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println("Can't read Parameters File");
                 instance = new Parameters();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
 

@@ -1,54 +1,12 @@
 <object-stream>
-  <DataLogger>
+  <java.lang.Class>
     <dataLog>
       <model.DataClasses.Data>
-        <in>10</in>
+        <in>12</in>
         <out>0</out>
         <transmitted>true</transmitted>
-        <date>2016-12-11 18:02:13.5 UTC</date>
-      </model.DataClasses.Data>
-      <model.DataClasses.Data>
-        <in>28</in>
-        <out>0</out>
-        <transmitted>true</transmitted>
-        <date>2016-12-11 19:00:46.709 UTC</date>
-      </model.DataClasses.Data>
-      <model.DataClasses.Data>
-        <in>10</in>
-        <out>0</out>
-        <transmitted>true</transmitted>
-        <date>2016-12-11 20:29:28.195 UTC</date>
-      </model.DataClasses.Data>
-      <model.DataClasses.Data>
-        <in>1</in>
-        <out>0</out>
-        <transmitted>false</transmitted>
-        <date>2016-12-11 21:18:36.41 UTC</date>
-      </model.DataClasses.Data>
-      <model.DataClasses.Data>
-        <in>1</in>
-        <out>0</out>
-        <transmitted>false</transmitted>
-        <date>2016-12-11 21:18:42.299 UTC</date>
-      </model.DataClasses.Data>
-      <model.DataClasses.Data>
-        <in>1</in>
-        <out>0</out>
-        <transmitted>false</transmitted>
-        <date>2016-12-11 21:18:48.447 UTC</date>
-      </model.DataClasses.Data>
-      <model.DataClasses.Data>
-        <in>1</in>
-        <out>0</out>
-        <transmitted>false</transmitted>
-        <date>2016-12-11 21:18:54.214 UTC</date>
-      </model.DataClasses.Data>
-      <model.DataClasses.Data>
-        <in>1</in>
-        <out>0</out>
-        <transmitted>false</transmitted>
-        <date>2016-12-11 21:19:00.338 UTC</date>
+        <date>2016-12-11 22:31:31.137 UTC</date>
       </model.DataClasses.Data>
     </dataLog>
-  </DataLogger>
+  </java.lang.Class>
 </object-stream>

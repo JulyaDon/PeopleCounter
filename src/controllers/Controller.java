@@ -3,16 +3,14 @@ package controllers;
 import controller.ControllerPeopleDisplay;
 import controller.ControllerSerialControlPanel;
 import controller.Sensor;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 import model.DataClasses.Data;
 import model.DataClasses.DataCollect;
 import model.DataClasses.DataLogger;
-import model.ParametersClasses.Parameters;
+import sample.Parameters;
 import sample.OurParameters;
 import sample.XMLwriterReader;
 
@@ -25,7 +23,7 @@ public class Controller implements Initializable {
     @FXML BarcodeController barcodeController;
     OurParameters ourParameters = new OurParameters();
 
-    XMLwriterReader<OurParameters> writerParameters = new XMLwriterReader<>("src/files/parameters.xml");
+    XMLwriterReader<OurParameters> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
