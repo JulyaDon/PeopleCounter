@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerSerialControlPanel">
+   <children>
+      <Label text="COM">
+         <HBox.margin>
+            <Insets top="5.0" />
+         </HBox.margin>
+      </Label>
+      <ChoiceBox fx:id="choiceBoxPortsList" prefWidth="150.0" />
+      <Button mnemonicParsing="false" text="Connect" onAction="#onConnectClick" />
+      <Button mnemonicParsing="false" text="Disconnect" onAction="#onDisconnectClick"/>
+      <Button mnemonicParsing="false" text="Refresh" onAction="#onRefreshClick" />
+   </children>
+</HBox>

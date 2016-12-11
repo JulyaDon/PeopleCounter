@@ -1,0 +1,51 @@
+<object-stream>
+  <DataLogger>
+    <dataLog>
+      <model.DataClasses.Data>
+        <in>1</in>
+        <out>0</out>
+        <date>2016-12-11 17:54:21.178 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>1</in>
+        <out>0</out>
+        <date>2016-12-11 17:54:38.873 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>2</in>
+        <out>0</out>
+        <date>2016-12-11 17:55:12.835 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>1</in>
+        <out>0</out>
+        <date>2016-12-11 17:58:20.915 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>1</in>
+        <out>0</out>
+        <date>2016-12-11 17:59:44.978 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>1</in>
+        <out>0</out>
+        <date>2016-12-11 17:59:44.987 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>1</in>
+        <out>0</out>
+        <date>2016-12-11 18:02:13.5 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>1</in>
+        <out>0</out>
+        <date>2016-12-11 18:21:16.95 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>1</in>
+        <out>0</out>
+        <date>2016-12-11 19:00:46.709 UTC</date>
+      </model.DataClasses.Data>
+    </dataLog>
+  </DataLogger>
+</object-stream>
