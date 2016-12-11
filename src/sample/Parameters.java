@@ -14,9 +14,6 @@ public class Parameters {
     }
 
     public static Parameters getInstance(){
-
-
-
         if(instance == null){
             XMLwriterReader<sample.Parameters> reader = new XMLwriterReader<>("resources/controller_parameters.xml");
 
@@ -30,7 +27,6 @@ public class Parameters {
                 e.printStackTrace();
             }
         }
-
         return instance;
     }
 
