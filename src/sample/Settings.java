@@ -18,10 +18,10 @@ public class Settings {
     private String reportApiToken = "tls";
     private String counterApiLink = "http://tlcounter.cifr.us/api/cam-add";
     ArrayList<Tariffs> OurTariffs = new ArrayList<>();
-    Tariffs FuckingTariffs = new Tariffs();
+    Tariffs AllTariffs = new Tariffs();
     public void obtainTariffs(){
-        FuckingTariffs.addBarcodes();
-        OurTariffs.add(FuckingTariffs);
+        AllTariffs.addBarcodes();
+        OurTariffs.add(AllTariffs);
     }
 
 }

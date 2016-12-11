@@ -41,6 +41,6 @@
         </Barcodes>
       </sample.Tariffs>
     </OurTariffs>
-    <FuckingTariffs reference="../OurTariffs/sample.Tariffs"/>
+    <AllTariffs reference="../OurTariffs/sample.Tariffs"/>
   </java.lang.Class>
 </object-stream>
