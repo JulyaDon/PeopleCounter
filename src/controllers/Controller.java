@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import model.DataClasses.Data;
 import model.DataClasses.DataCollect;
 import model.DataClasses.DataLogger;
@@ -26,6 +27,7 @@ public class Controller implements Initializable {
     @FXML TabPane tabContainer;
     @FXML Button buttonTariff1;
     @FXML Button buttonTariff2;
+    @FXML TextArea textAreaLatest;
 
     OurParameters ourParameters = new OurParameters();
     Settings ourSettings = new Settings();
@@ -82,7 +84,7 @@ public class Controller implements Initializable {
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
 
-        t.start();
+
 
 
     }
@@ -131,6 +133,10 @@ public class Controller implements Initializable {
     }
 
     public void onTariff2clicked(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        String note = button.getText() + " was pressed \n";
+        textAreaLatest.setText(textAreaLatest.getText() + note);
+        textAreaLatest.setScrollTop(Double.MAX_VALUE);
         resetFocus();
     }
 
@@ -153,7 +159,7 @@ public class Controller implements Initializable {
     }
 
     public void CreateSensor(){
-        Parameters parameters = Parameters.getInstance();
+        t.start();
 
         s1 = new Sensor(controllerSerialControlPanel.getSerial());
         s1.AddOnDataAvailableHandler(data -> onNewData(data));
