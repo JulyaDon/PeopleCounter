@@ -20,7 +20,7 @@
           <int>79668323</int>
         </Barcodes>
       </sample.Tariffs>
-    <sample.Tariffs>
+      <sample.Tariffs>
         <tariff__title>Бесплатный VIP</tariff__title>
         <tariff__id>2</tariff__id>
         <tariff__cost>0</tariff__cost>
@@ -30,8 +30,8 @@
           <int>89668322</int>
           <int>89668323</int>
         </Barcodes>
-    </sample.Tariffs>
-    <sample.Tariffs>
+      </sample.Tariffs>
+      <sample.Tariffs>
         <tariff__title>Платный</tariff__title>
         <tariff__id>3</tariff__id>
         <tariff__cost>4</tariff__cost>

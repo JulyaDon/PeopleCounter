@@ -13,6 +13,7 @@ import sample.Settings;
 import sample.XMLwriterReader;
 
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,8 +23,9 @@ public class Controller implements Initializable {
     OurParameters ourParameters = new OurParameters();
     Settings ourSettings = new Settings();
 
+    String fileWithSettings = "resources/settings.xml";
     XMLwriterReader<OurParameters> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
-    XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>("resources/settings.xml");
+    XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>(fileWithSettings);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,22 +52,26 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
-        //ЗАПИСЬ НАСТРОЕК В XML
-        /*try {
-            writerSettings.WriteFile(ourSettings, Settings.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+
+
+
+        if (!(new File(fileWithSettings)).exists()) {
+            //ЗАПИСЬ НАСТРОЕК В XML
+            try {
+                writerSettings.WriteFile(ourSettings, Settings.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         //СЧИТЫВАНИЕ НАСТРОЕК ИЗ XML
-        try {
+        /*try {
             ourSettings = writerSettings.ReadFile(Settings.class);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        int a = 0;
+        }*/
 
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
