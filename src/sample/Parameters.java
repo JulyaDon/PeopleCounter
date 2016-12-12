@@ -37,7 +37,7 @@ public class Parameters {
     private int acceptLevel;
     private int pulseWidthThreshold;
     private int dataSendTimeout;
-
+    private boolean sendData;
 
     public String getLocation() {
         return location;
@@ -77,5 +77,13 @@ public class Parameters {
 
     public void setDataSendTimeout(int dataSendTimeout) {
         this.dataSendTimeout = dataSendTimeout;
+    }
+
+    public boolean isSendData() {
+        return sendData;
+    }
+
+    public void setSendData(boolean sendData) {
+        this.sendData = sendData;
     }
 }
