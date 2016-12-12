@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import model.DataClasses.Data;
 import model.DataClasses.DataCollect;
 import model.DataClasses.DataLogger;
@@ -14,6 +15,7 @@ import sample.Parameters;
 import sample.Report;
 import sample.Settings;
 import sample.XMLwriterReader;
+import sample.*;
 
 import javax.swing.*;
 import java.io.File;
@@ -27,6 +29,7 @@ public class Controller implements Initializable {
     @FXML TabPane tabContainer;
     @FXML Button buttonTariff1;
     @FXML Button buttonTariff2;
+    @FXML TextArea textAreaLatest;
 
     Report ourParameters = new Report(99999,99999,"sssssssssssssssssss",99999);;// = new Report();
     Settings ourSettings = new Settings();
@@ -85,13 +88,33 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
-        buttonTariff1.setText(ourSettings.getArrayOfTariffs().get(1).tariff_title);
-        buttonTariff2.setText(ourSettings.getArrayOfTariffs().get(2).tariff_title);
+        buttonTariff1.setText(ourSettings.getArrayOfTariffs().get(1).getTariff_title());
+        buttonTariff2.setText(ourSettings.getArrayOfTariffs().get(2).getTariff_title());
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
 
-        t.start();
 
+
+
+    }
+
+    public Tariffs checkBarcodes(String barcodeFromTextField) {
+        Tariffs tafiffWeLookFor = null;
+        if(!(barcodeController.BarcodeTextField.getText().isEmpty())){
+            int inputedBarCode = Integer.valueOf(barcodeFromTextField);
+            int currentBarCode;
+            for (int i = 0; i < ourSettings.getArrayOfTariffs().size(); i++) {
+                for(int j = 0; j < ourSettings.getArrayOfTariffs().get(i).getBarcodes().size(); j++){
+                    currentBarCode = ourSettings.getArrayOfTariffs().get(i).getBarcodes().get(j);
+                    if (inputedBarCode == currentBarCode) {
+                        tafiffWeLookFor = ourSettings.getArrayOfTariffs().get(i);
+                        System.out.println(tafiffWeLookFor.getTariff_title());
+                    }
+                }
+            }
+        }
+
+        return tafiffWeLookFor;
     }
 
     private void resetFocus(){
@@ -114,9 +137,15 @@ public class Controller implements Initializable {
 
     public void onTariff1clicked(ActionEvent actionEvent) {
         resetFocus();
+        Tariffs ourTariff = checkBarcodes(barcodeController.BarcodeTextField.getText());
+        System.out.println(ourTariff);
     }
 
     public void onTariff2clicked(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        String note = button.getText() + " was pressed \n";
+        textAreaLatest.setText(textAreaLatest.getText() + note);
+        textAreaLatest.setScrollTop(Double.MAX_VALUE);
         resetFocus();
     }
 
@@ -139,7 +168,7 @@ public class Controller implements Initializable {
     }
 
     public void CreateSensor(){
-        Parameters parameters = Parameters.getInstance();
+        t.start();
 
         s1 = new Sensor(controllerSerialControlPanel.getSerial());
         s1.AddOnDataAvailableHandler(data -> onNewData(data));
