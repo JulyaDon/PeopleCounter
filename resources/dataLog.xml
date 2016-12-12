@@ -10,7 +10,7 @@
       <model.DataClasses.Data>
         <in>1</in>
         <out>0</out>
-        <transmitted>false</transmitted>
+        <transmitted>true</transmitted>
         <date>2016-12-11 23:09:32.557 UTC</date>
       </model.DataClasses.Data>
     </dataLog>
