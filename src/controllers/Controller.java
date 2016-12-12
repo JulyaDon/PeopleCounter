@@ -102,10 +102,6 @@ public class Controller implements Initializable {
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
 
-        textAreaLatest.textProperty().addListener((observable, oldValue, newValue) -> {
-            textAreaLatest.setScrollTop(Double.MIN_VALUE); //this will scroll to the bottom
-            //use Double.MIN_VALUE to scroll to the top
-        });
     }
 
     public Tariffs checkBarcodes(String barcodeFromTextField) {
@@ -171,6 +167,7 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
+        textAreaLatest.setScrollTop(Double.MAX_VALUE);
     }
 
     public void onTariff2clicked(ActionEvent actionEvent) {
@@ -191,6 +188,8 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        textAreaLatest.setScrollTop(Double.MAX_VALUE);
     }
 
 
