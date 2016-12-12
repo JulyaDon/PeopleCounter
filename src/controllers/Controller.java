@@ -23,7 +23,10 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -33,13 +36,19 @@ public class Controller implements Initializable {
     @FXML Button buttonTariff2;
     @FXML TextArea textAreaLatest;
 
+    Date date = new Date();
+    //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    String todayDate = dateFormat.format(date).toString();
+
     Report ourParameters = new Report(99999,99999,"sssssssssssssssssss",99999);;// = new Report();
     Settings ourSettings = new Settings();
 
     String fileWithSettings = "resources/settings.xml";
+    String fileReportsForToday = "resources/reports/" + todayDate + ".xml";
     XMLwriterReader<Report> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
     XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>(fileWithSettings);
-    XMLwriterReader<ArrayList<Report>> writerReports = new XMLwriterReader<>("resources/reports.xml");
+    XMLwriterReader<ArrayList<Report>> writerReports = new XMLwriterReader<>(fileReportsForToday);
 
     ArrayList<Report> ReportList = new ArrayList<>();
 
@@ -70,13 +79,16 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
         */
-        //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
-        try {
-            ReportList = writerReports.ReadFile(Report.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+
+        if (new File(fileReportsForToday).exists()) {
+            //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
+            try {
+                ReportList = writerReports.ReadFile(Report.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         //ReportList.add(new Report(99999,99999,"sssssssssssssssssss",99999));
         if (!(new File(fileWithSettings)).exists()) {
