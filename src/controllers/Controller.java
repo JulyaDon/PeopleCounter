@@ -19,6 +19,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -34,10 +35,10 @@ public class Controller implements Initializable {
     XMLwriterReader<Report> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
     XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>(fileWithSettings);
 
+    ArrayList<Report> ReportList = new ArrayList<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        Report testReport = new Report(1,1,"s",1);
 
         controllerSerialControlPanel = ControllerSerialControlPanel.Instance;
         controllerPeopleDisplay = ControllerPeopleDisplay.Instance;
@@ -46,13 +47,15 @@ public class Controller implements Initializable {
         barcodeController.init(this);
 
         //ЗАПИСЬ РЕПОРТОВ В XML
+        /*
         try {
             writerParameters.WriteFile(ourParameters, Report.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        */
         //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
+        /*
         try {
             ourParameters = writerParameters.ReadFile(Report.class);
         } catch (IOException e) {
@@ -60,7 +63,7 @@ public class Controller implements Initializable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+        */
 
 
 
