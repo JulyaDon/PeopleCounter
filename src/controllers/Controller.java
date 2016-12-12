@@ -83,8 +83,8 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
-        buttonTariff1.setText(ourSettings.getArrayOfTariffs().get(1).tariff_title);
-        buttonTariff2.setText(ourSettings.getArrayOfTariffs().get(2).tariff_title);
+        buttonTariff1.setText(ourSettings.getArrayOfTariffs().get(1).getTariff_title());
+        buttonTariff2.setText(ourSettings.getArrayOfTariffs().get(2).getTariff_title());
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
 
