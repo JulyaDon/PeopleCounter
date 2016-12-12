@@ -24,4 +24,8 @@ public class Settings {
         OurTariffs.add(AllTariffs);
     }
 
+    public ArrayList<Tariffs> getArrayOfTariffs(){
+        return this.OurTariffs;
+    }
+
 }
