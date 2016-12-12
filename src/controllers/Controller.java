@@ -39,6 +39,7 @@ public class Controller implements Initializable {
     String fileWithSettings = "resources/settings.xml";
     XMLwriterReader<Report> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
     XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>(fileWithSettings);
+    XMLwriterReader<ArrayList<Report>> writerReports = new XMLwriterReader<>("resources/reports.xml");
 
     ArrayList<Report> ReportList = new ArrayList<>();
 
@@ -51,7 +52,7 @@ public class Controller implements Initializable {
         barcodeController = BarcodeController.instance;
         barcodeController.init(this);
 
-        //ЗАПИСЬ РЕПОРТОВ В XML
+        //ЗАПИСЬ ПАРАМЕТРОВ В XML
         /*
         try {
             writerParameters.WriteFile(ourParameters, Report.class);
@@ -59,7 +60,7 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
         */
-        //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
+        //СЧИТЫВАНИЕ ПАРАМЕТРОВ ИЗ XML
         /*
         try {
             ourParameters = writerParameters.ReadFile(Report.class);
@@ -69,7 +70,15 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
         */
-
+        //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
+        try {
+            ReportList = writerReports.ReadFile(Report.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        //ReportList.add(new Report(99999,99999,"sssssssssssssssssss",99999));
         if (!(new File(fileWithSettings)).exists()) {
             //ЗАПИСЬ НАСТРОЕК В XML
             try {
@@ -155,6 +164,12 @@ public class Controller implements Initializable {
             textAreaLatest.setText(textAreaLatest.getText() + note);
         }
 
+        //ЗАПИСЬ РЕПОРТОВ В XML
+        try {
+            writerReports.WriteFile(ReportList, Report.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -169,6 +184,13 @@ public class Controller implements Initializable {
 
         String note = "Тариф: " + defaultTariff.getTariff_title() + "\n";
         textAreaLatest.setText(textAreaLatest.getText() + note);
+
+        //ЗАПИСЬ РЕПОРТОВ В XML
+        try {
+            writerReports.WriteFile(ReportList, Report.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
