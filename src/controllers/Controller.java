@@ -13,10 +13,7 @@ import javafx.scene.control.TabPane;
 import model.DataClasses.Data;
 import model.DataClasses.DataCollect;
 import model.DataClasses.DataLogger;
-import sample.Parameters;
-import sample.OurParameters;
-import sample.Settings;
-import sample.XMLwriterReader;
+import sample.*;
 
 import javax.swing.*;
 import java.io.File;
@@ -62,9 +59,6 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
-
-
-
         if (!(new File(fileWithSettings)).exists()) {
             //ЗАПИСЬ НАСТРОЕК В XML
             try {
@@ -90,6 +84,26 @@ public class Controller implements Initializable {
 
         t.start();
 
+
+    }
+
+    public Tariffs checkBarcodes(String barcodeFromTextField) {
+        Tariffs tafiffWeLookFor = null;
+        if(!(barcodeController.BarcodeTextField.getText().isEmpty())){
+            int inputedBarCode = Integer.valueOf(barcodeFromTextField);
+            int currentBarCode;
+            for (int i = 0; i < ourSettings.getArrayOfTariffs().size(); i++) {
+                for(int j = 0; j < ourSettings.getArrayOfTariffs().get(i).getBarcodes().size(); j++){
+                    currentBarCode = ourSettings.getArrayOfTariffs().get(i).getBarcodes().get(j);
+                    if (inputedBarCode == currentBarCode) {
+                        tafiffWeLookFor = ourSettings.getArrayOfTariffs().get(i);
+                        System.out.println(tafiffWeLookFor.getTariff_title());
+                    }
+                }
+            }
+        }
+
+        return tafiffWeLookFor;
     }
 
     private void resetFocus(){
@@ -112,6 +126,8 @@ public class Controller implements Initializable {
 
     public void onTariff1clicked(ActionEvent actionEvent) {
         resetFocus();
+        Tariffs ourTariff = checkBarcodes(barcodeController.BarcodeTextField.getText());
+        System.out.println(ourTariff);
     }
 
     public void onTariff2clicked(ActionEvent actionEvent) {

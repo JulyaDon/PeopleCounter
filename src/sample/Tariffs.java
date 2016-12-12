@@ -18,7 +18,7 @@ public class Tariffs {
         Barcodes.add(79668323);
     }
     public ArrayList<Integer> getBarcodes(){
-        addBarcodes();
+        //addBarcodes();
         return Barcodes;
     }
 
