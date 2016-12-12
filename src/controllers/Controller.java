@@ -114,10 +114,6 @@ public class Controller implements Initializable {
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
 
-        textAreaLatest.textProperty().addListener((observable, oldValue, newValue) -> {
-            textAreaLatest.setScrollTop(Double.MIN_VALUE); //this will scroll to the bottom
-            //use Double.MIN_VALUE to scroll to the top
-        });
     }
 
     public Tariffs checkBarcodes(String barcodeFromTextField) {
@@ -176,6 +172,8 @@ public class Controller implements Initializable {
             textAreaLatest.setText(textAreaLatest.getText() + note);
         }
 
+        textAreaLatest.setScrollTop(Double.MAX_VALUE);
+
         //ЗАПИСЬ РЕПОРТОВ В XML
         WriteReports(ReportList);
     }
@@ -192,8 +190,11 @@ public class Controller implements Initializable {
         String note = "Тариф: " + defaultTariff.getTariff_title() + "\n";
         textAreaLatest.setText(textAreaLatest.getText() + note);
 
+        textAreaLatest.setScrollTop(Double.MAX_VALUE);
+
         //ЗАПИСЬ РЕПОРТОВ В XML
         WriteReports(ReportList);
+
     }
 
     private void WriteReports(ArrayList<Report> reports){
@@ -210,6 +211,8 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        textAreaLatest.setScrollTop(Double.MAX_VALUE);
     }
 
     /////////////////////////////////ANDREW'S PART////////////////////////////////////////
