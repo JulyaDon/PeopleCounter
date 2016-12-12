@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import model.DataClasses.Data;
@@ -26,6 +27,8 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     @FXML BarcodeController barcodeController;
     @FXML TabPane tabContainer;
+    @FXML Button buttonTariff1;
+    @FXML Button buttonTariff2;
 
     OurParameters ourParameters = new OurParameters();
     Settings ourSettings = new Settings();
@@ -72,14 +75,16 @@ public class Controller implements Initializable {
         }
 
         //СЧИТЫВАНИЕ НАСТРОЕК ИЗ XML
-        /*try {
+        try {
             ourSettings = writerSettings.ReadFile(Settings.class);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
 
+        buttonTariff1.setText(ourSettings.getArrayOfTariffs().get(1).tariff_title);
+        buttonTariff2.setText(ourSettings.getArrayOfTariffs().get(2).tariff_title);
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
 
