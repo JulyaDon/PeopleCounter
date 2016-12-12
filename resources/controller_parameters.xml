@@ -6,5 +6,15 @@
     <pulseWidthThreshold>1</pulseWidthThreshold>
     <dataSendTimeout>60000</dataSendTimeout>
     <sendData>true</sendData>
+    <!-- Report params -->
+    <cashier_id>111</cashier_id>
+    <cashier_name>Zone 1</cashier_name>
+    <cash_id>111</cash_id>
+    <cash_title>Zone 1</cash_title>
+    <controller_id>1</controller_id>
+    <enter_id>111</enter_id>
+    <enter_title>Zone 1</enter_title>
+    <app_id>1</app_id>
+    <app_title>Zone 1</app_title>
   </java.lang.Class>
 </object-stream>

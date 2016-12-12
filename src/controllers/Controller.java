@@ -1,20 +1,17 @@
 package controllers;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import model.DataClasses.Data;
 import model.DataClasses.DataCollect;
 import model.DataClasses.DataLogger;
 import sample.Parameters;
-import sample.OurParameters;
+import sample.Report;
 import sample.Settings;
 import sample.XMLwriterReader;
 
@@ -30,15 +27,17 @@ public class Controller implements Initializable {
     @FXML Button buttonTariff1;
     @FXML Button buttonTariff2;
 
-    OurParameters ourParameters = new OurParameters();
+    Report ourParameters = new Report(99999,99999,"sssssssssssssssssss",99999);;// = new Report();
     Settings ourSettings = new Settings();
 
     String fileWithSettings = "resources/settings.xml";
-    XMLwriterReader<OurParameters> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
+    XMLwriterReader<Report> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
     XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>(fileWithSettings);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        Report testReport = new Report(1,1,"s",1);
 
         controllerSerialControlPanel = ControllerSerialControlPanel.Instance;
         controllerPeopleDisplay = ControllerPeopleDisplay.Instance;
@@ -48,14 +47,14 @@ public class Controller implements Initializable {
 
         //ЗАПИСЬ РЕПОРТОВ В XML
         try {
-            writerParameters.WriteFile(ourParameters, OurParameters.class);
+            writerParameters.WriteFile(ourParameters, Report.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
         try {
-            ourParameters = writerParameters.ReadFile(OurParameters.class);
+            ourParameters = writerParameters.ReadFile(Report.class);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

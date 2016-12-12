@@ -39,6 +39,16 @@ public class Parameters {
     private int dataSendTimeout;
     private boolean sendData;
 
+    private int cashier_id;
+    private String cashier_name;
+    private int cash_id;
+    private String cash_title;
+    private int controller_id;
+    private int enter_id;
+    private String enter_title;
+    private int app_id;
+    private String app_title;
+
     public String getLocation() {
         return location;
     }
@@ -85,5 +95,77 @@ public class Parameters {
 
     public void setSendData(boolean sendData) {
         this.sendData = sendData;
+    }
+
+    public int getCashier_id() {
+        return cashier_id;
+    }
+
+    public void setCashier_id(int cashier_id) {
+        this.cashier_id = cashier_id;
+    }
+
+    public String getCashier_name() {
+        return cashier_name;
+    }
+
+    public void setCashier_name(String cashier_name) {
+        this.cashier_name = cashier_name;
+    }
+
+    public int getCash_id() {
+        return cash_id;
+    }
+
+    public void setCash_id(int cash_id) {
+        this.cash_id = cash_id;
+    }
+
+    public String getCash_title() {
+        return cash_title;
+    }
+
+    public void setCash_title(String cash_title) {
+        this.cash_title = cash_title;
+    }
+
+    public int getController_id() {
+        return controller_id;
+    }
+
+    public void setController_id(int controller_id) {
+        this.controller_id = controller_id;
+    }
+
+    public int getEnter_id() {
+        return enter_id;
+    }
+
+    public void setEnter_id(int enter_id) {
+        this.enter_id = enter_id;
+    }
+
+    public String getEnter_title() {
+        return enter_title;
+    }
+
+    public void setEnter_title(String enter_title) {
+        this.enter_title = enter_title;
+    }
+
+    public int getApp_id() {
+        return app_id;
+    }
+
+    public void setApp_id(int app_id) {
+        this.app_id = app_id;
+    }
+
+    public String getApp_title() {
+        return app_title;
+    }
+
+    public void setApp_title(String app_title) {
+        this.app_title = app_title;
     }
 }
