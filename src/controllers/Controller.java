@@ -1,25 +1,27 @@
 package controllers;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import model.DataClasses.Data;
 import model.DataClasses.DataCollect;
 import model.DataClasses.DataLogger;
+import sample.Parameters;
+import sample.Report;
+import sample.Settings;
+import sample.XMLwriterReader;
 import sample.*;
 
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -29,12 +31,14 @@ public class Controller implements Initializable {
     @FXML Button buttonTariff2;
     @FXML TextArea textAreaLatest;
 
-    OurParameters ourParameters = new OurParameters();
+    Report ourParameters = new Report(99999,99999,"sssssssssssssssssss",99999);;// = new Report();
     Settings ourSettings = new Settings();
 
     String fileWithSettings = "resources/settings.xml";
-    XMLwriterReader<OurParameters> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
+    XMLwriterReader<Report> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
     XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>(fileWithSettings);
+
+    ArrayList<Report> ReportList = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,20 +50,25 @@ public class Controller implements Initializable {
         barcodeController.init(this);
 
         //ЗАПИСЬ РЕПОРТОВ В XML
+        /*
         try {
-            writerParameters.WriteFile(ourParameters, OurParameters.class);
+            writerParameters.WriteFile(ourParameters, Report.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        */
         //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
+        /*
         try {
-            ourParameters = writerParameters.ReadFile(OurParameters.class);
+            ourParameters = writerParameters.ReadFile(Report.class);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
+
+
 
         if (!(new File(fileWithSettings)).exists()) {
             //ЗАПИСЬ НАСТРОЕК В XML

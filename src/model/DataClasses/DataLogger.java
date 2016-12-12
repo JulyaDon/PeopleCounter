@@ -1,5 +1,6 @@
 package model.DataClasses;
 
+import sample.Parameters;
 import sample.XMLwriterReader;
 
 import java.io.IOException;
@@ -52,9 +53,13 @@ public class DataLogger implements DataCollect.ICountChangeHandler {
 
         dataLog = GroupedDataLog;
 
-        DataSender dataSender = new DataSender();
-        for (int i = 0; i < dataLog.size() ; i++) {
-            if(!dataLog.get(i).isTransmitted()) dataLog.get(i).setTransmitted( dataSender.SendData(dataLog.get(i)) );
+        Parameters parameter = Parameters.getInstance();
+
+        if (parameter.isSendData()) {
+            DataSender dataSender = new DataSender();
+            for (int i = 0; i < dataLog.size(); i++) {
+                if (!dataLog.get(i).isTransmitted()) dataLog.get(i).setTransmitted(dataSender.SendData(dataLog.get(i)));
+            }
         }
 
         XMLwriterReader xmlWriterReader = new XMLwriterReader("resources/dataLog.xml");
