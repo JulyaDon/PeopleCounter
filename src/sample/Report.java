@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +11,18 @@ import java.util.Date;
 public class Report {
 
     public Report(int ticket_barcode, int tariff_id, String tariff_title, int tariff_cost){
+
+        Report defaultReport = null;
+
+        XMLwriterReader<Report> reader = new XMLwriterReader("resources/parameters.xml");
+        try {
+            defaultReport = reader.ReadFile(Report.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.ticket_activated_at = dateFormat.format(date).toString();
@@ -19,18 +32,44 @@ public class Report {
         this.tariff_title = tariff_title;
         this.tariff_cost = tariff_cost;
 
-        Parameters parameters = Parameters.getInstance();
+        this.cashier_id = defaultReport.cashier_id;
+        this.cashier_name = defaultReport.cashier_name;
+        this.controller_id = defaultReport.controller_id;
+        this.enter_id = defaultReport.enter_id;
+        this.enter_title = defaultReport.enter_title;
+        this.app_id = defaultReport.app_id;
+        this.app_title = defaultReport.app_title;
 
-        this.cashier_id=parameters.getCashier_id();
-        this.cashier_name=parameters.getCashier_name();
-        this.controller_id = parameters.getController_id();
-        this.enter_id = parameters.getEnter_id();
-        this.enter_title = parameters.getEnter_title();
-        this.app_id = parameters.getApp_id();
-        this.app_title = parameters.getApp_title();
+        this.event_id = defaultReport.event_id;
+        this.event_title = defaultReport.event_title;
+        this.event_from = defaultReport.event_from;
+        this.event_to = defaultReport.event_to;
+        this.ticket_active = defaultReport.ticket_active;
+        this.tariff_color = defaultReport.tariff_color;
+        this.tariff_icon = defaultReport.tariff_icon;
+        this.ticket_type_id = defaultReport.ticket_type_id;
+        this.ticket_type_title = defaultReport.ticket_type_title;
+        this.currency_title = defaultReport.currency_title;
+        this.cash_id = defaultReport.cash_id;
+        this.cash_title = defaultReport.cash_title;
+        this.controller_name = defaultReport.controller_name;
+        this.ticket_cancel = defaultReport.ticket_cancel;
+        this.ticket_canceled_at = defaultReport.ticket_canceled_at;
     }
 
     public Report(int ticket_barcode, Tariffs tariff){
+
+        Report defaultReport = null;
+
+        XMLwriterReader<Report> reader = new XMLwriterReader("resources/parameters.xml");
+        try {
+            defaultReport = reader.ReadFile(Report.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.ticket_activated_at = dateFormat.format(date).toString();
@@ -40,15 +79,29 @@ public class Report {
         this.tariff_title = tariff.getTariff_title();
         this.tariff_cost = tariff.getTariff_cost();
 
-        Parameters parameters = Parameters.getInstance();
+        this.cashier_id = defaultReport.cashier_id;
+        this.cashier_name = defaultReport.cashier_name;
+        this.controller_id = defaultReport.controller_id;
+        this.enter_id = defaultReport.enter_id;
+        this.enter_title = defaultReport.enter_title;
+        this.app_id = defaultReport.app_id;
+        this.app_title = defaultReport.app_title;
 
-        this.cashier_id=parameters.getCashier_id();
-        this.cashier_name=parameters.getCashier_name();
-        this.controller_id = parameters.getController_id();
-        this.enter_id = parameters.getEnter_id();
-        this.enter_title = parameters.getEnter_title();
-        this.app_id = parameters.getApp_id();
-        this.app_title = parameters.getApp_title();
+        this.event_id = defaultReport.event_id;
+        this.event_title = defaultReport.event_title;
+        this.event_from = defaultReport.event_from;
+        this.event_to = defaultReport.event_to;
+        this.ticket_active = defaultReport.ticket_active;
+        this.tariff_color = defaultReport.tariff_color;
+        this.tariff_icon = defaultReport.tariff_icon;
+        this.ticket_type_id = defaultReport.ticket_type_id;
+        this.ticket_type_title = defaultReport.ticket_type_title;
+        this.currency_title = defaultReport.currency_title;
+        this.cash_id = defaultReport.cash_id;
+        this.cash_title = defaultReport.cash_title;
+        this.controller_name = defaultReport.controller_name;
+        this.ticket_cancel = defaultReport.ticket_cancel;
+        this.ticket_canceled_at = defaultReport.ticket_canceled_at;
     }
 
     private String event_id = "7";
