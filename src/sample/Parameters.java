@@ -39,6 +39,7 @@ public class Parameters {
     private int dataSendTimeout;
     private boolean sendData;
 
+    /*
     private int cashier_id;
     private String cashier_name;
     private int cash_id;
@@ -48,7 +49,7 @@ public class Parameters {
     private String enter_title;
     private int app_id;
     private String app_title;
-
+*/
     public String getLocation() {
         return location;
     }
@@ -96,7 +97,7 @@ public class Parameters {
     public void setSendData(boolean sendData) {
         this.sendData = sendData;
     }
-
+/*
     public int getCashier_id() {
         return cashier_id;
     }
@@ -167,5 +168,5 @@ public class Parameters {
 
     public void setApp_title(String app_title) {
         this.app_title = app_title;
-    }
+    }*/
 }

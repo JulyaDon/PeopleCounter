@@ -46,7 +46,6 @@ public class Controller implements Initializable {
 
     String fileWithSettings = "resources/settings.xml";
     String fileReportsForToday = "resources/reports/" + todayDate + ".xml";
-    XMLwriterReader<Report> writerParameters = new XMLwriterReader<>("resources/parameters.xml");
     XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>(fileWithSettings);
     XMLwriterReader<ArrayList<Report>> writerReports = new XMLwriterReader<>(fileReportsForToday);
 
@@ -113,6 +112,11 @@ public class Controller implements Initializable {
         buttonTariff2.setText(ourSettings.getArrayOfTariffs().get(2).getTariff_title());
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
+
+        //Запис репортів по закриттю
+        Main.addRunnable(() -> WriteReports(ReportList));
+        //Відправка логу на сервер
+        Main.addRunnable(() -> dataLogger.SendData());
 
     }
 
