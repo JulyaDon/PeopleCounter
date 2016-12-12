@@ -13,6 +13,36 @@
         <transmitted>true</transmitted>
         <date>2016-12-11 23:09:32.557 UTC</date>
       </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>2</in>
+        <out>0</out>
+        <transmitted>false</transmitted>
+        <date>2016-12-12 17:39:04.412 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>1</in>
+        <out>0</out>
+        <transmitted>false</transmitted>
+        <date>2016-12-12 17:39:11.171 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>2</in>
+        <out>0</out>
+        <transmitted>false</transmitted>
+        <date>2016-12-12 17:39:19.594 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>3</in>
+        <out>0</out>
+        <transmitted>false</transmitted>
+        <date>2016-12-12 17:39:26.732 UTC</date>
+      </model.DataClasses.Data>
+      <model.DataClasses.Data>
+        <in>3</in>
+        <out>0</out>
+        <transmitted>false</transmitted>
+        <date>2016-12-12 17:39:34.150 UTC</date>
+      </model.DataClasses.Data>
     </dataLog>
   </java.lang.Class>
 </object-stream>
