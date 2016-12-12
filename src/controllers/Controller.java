@@ -1,9 +1,14 @@
 package controllers;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import model.DataClasses.Data;
 import model.DataClasses.DataCollect;
 import model.DataClasses.DataLogger;
@@ -20,6 +25,8 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML BarcodeController barcodeController;
+    @FXML TabPane tabContainer;
+
     OurParameters ourParameters = new OurParameters();
     Settings ourSettings = new Settings();
 
@@ -77,8 +84,17 @@ public class Controller implements Initializable {
         controllerSerialControlPanel.init(this);
 
         t.start();
+
     }
 
+    private void resetFocus(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                barcodeController.BarcodeTextField.requestFocus();
+            }
+        });
+    }
 
     public void Connect1clicked(ActionEvent actionEvent) {
         Platform.runLater(new Runnable() {
@@ -89,25 +105,12 @@ public class Controller implements Initializable {
         });
     }
 
-    public void Disconnect1clicked(ActionEvent actionEvent) {
-    }
-
-    public void Refresh1clicked(ActionEvent actionEvent) {
-    }
-
-    public void Connect2clicked(ActionEvent actionEvent) {
-    }
-
-    public void Disconnect2clicked(ActionEvent actionEvent) {
-    }
-
-    public void Refresh2clicked(ActionEvent actionEvent) {
-    }
-
     public void onTariff1clicked(ActionEvent actionEvent) {
+        resetFocus();
     }
 
     public void onTariff2clicked(ActionEvent actionEvent) {
+        resetFocus();
     }
 
 
@@ -143,5 +146,13 @@ public class Controller implements Initializable {
 
     private void onNewData(int data){
         c.addData(data);
+    }
+
+    public void tabSelectionChange(Event event) {
+        resetFocus();
+    }
+
+    public void onMouseClick(Event event) {
+        resetFocus();
     }
 }

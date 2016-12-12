@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<VBox prefHeight="274.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BarcodeController">
-    <Label text="Barcode:" />
-    <TextField fx:id="BarcodeTextField" onAction="#onEnter" />
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BarcodeController">
+   <children>
+       <Label text="Штрих-код:" />
+       <TextField fx:id="BarcodeTextField" onAction="#onEnter" prefWidth="300.0" />
+   </children>
 </VBox>
