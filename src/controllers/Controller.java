@@ -177,12 +177,7 @@ public class Controller implements Initializable {
         }
 
         //ЗАПИСЬ РЕПОРТОВ В XML
-        try {
-            writerReports.WriteFile(ReportList, Report.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        WriteReports(ReportList);
     }
 
     public void onTariff2clicked(ActionEvent actionEvent) {
@@ -198,13 +193,24 @@ public class Controller implements Initializable {
         textAreaLatest.setText(textAreaLatest.getText() + note);
 
         //ЗАПИСЬ РЕПОРТОВ В XML
+        WriteReports(ReportList);
+    }
+
+    private void WriteReports(ArrayList<Report> reports){
+
+        Date currentDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-d");
+
+        String address = "resources/reports/" + dateFormat.format(currentDate).toString() + ".xml";
+
+        XMLwriterReader<ArrayList<Report>> writer = new XMLwriterReader<>(address);
+
         try {
-            writerReports.WriteFile(ReportList, Report.class);
+            writer.WriteFile(reports, Report.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     /////////////////////////////////ANDREW'S PART////////////////////////////////////////
     ControllerSerialControlPanel controllerSerialControlPanel;
