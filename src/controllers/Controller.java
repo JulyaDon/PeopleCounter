@@ -1,6 +1,8 @@
 package controllers;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -100,9 +102,10 @@ public class Controller implements Initializable {
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
 
-
-
-
+        textAreaLatest.textProperty().addListener((observable, oldValue, newValue) -> {
+            textAreaLatest.setScrollTop(Double.MIN_VALUE); //this will scroll to the bottom
+            //use Double.MIN_VALUE to scroll to the top
+        });
     }
 
     public Tariffs checkBarcodes(String barcodeFromTextField) {
@@ -120,7 +123,6 @@ public class Controller implements Initializable {
                 }
             }
         }
-
         return tafiffWeLookFor;
     }
 
@@ -144,8 +146,23 @@ public class Controller implements Initializable {
 
     public void onTariff1clicked(ActionEvent actionEvent) {
         resetFocus();
-        Tariffs ourTariff = checkBarcodes(barcodeController.BarcodeTextField.getText());
-        System.out.println(ourTariff);
+
+        try {
+            int barcode = Integer.valueOf(barcodeController.BarcodeTextField.getText());
+
+            Tariffs ourTariff = checkBarcodes(barcodeController.BarcodeTextField.getText());
+
+            Report report = new Report(barcode, ourTariff);
+
+            ReportList.add(report);
+
+            String note = "Штрих-код: " + barcode + " Тариф: " + ourTariff.getTariff_title() + "\n";
+            textAreaLatest.setText(textAreaLatest.getText() + note);
+        } catch (Exception e){
+            //e.printStackTrace();
+            String note = "ШТРИХ-КОД НЕ ЗНАЙДЕНО! \n";
+            textAreaLatest.setText(textAreaLatest.getText() + note);
+        }
 
         //ЗАПИСЬ РЕПОРТОВ В XML
         try {
@@ -153,14 +170,20 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void onTariff2clicked(ActionEvent actionEvent) {
-        Button button = (Button) actionEvent.getSource();
-        String note = button.getText() + " was pressed \n";
-        textAreaLatest.setText(textAreaLatest.getText() + note);
-        textAreaLatest.setScrollTop(Double.MAX_VALUE);
         resetFocus();
+
+        Tariffs defaultTariff = new Tariffs();
+
+        Report report = new Report(1001, new Tariffs());
+
+        ReportList.add(report);
+
+        String note = "Тариф: " + defaultTariff.getTariff_title() + "\n";
+        textAreaLatest.setText(textAreaLatest.getText() + note);
 
         //ЗАПИСЬ РЕПОРТОВ В XML
         try {

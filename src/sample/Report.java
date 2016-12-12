@@ -30,6 +30,27 @@ public class Report {
         this.app_title = parameters.getApp_title();
     }
 
+    public Report(int ticket_barcode, Tariffs tariff){
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.ticket_activated_at = dateFormat.format(date).toString();
+
+        this.ticket_barcode = ticket_barcode;
+        this.tariff_id = tariff.getTariff_id();
+        this.tariff_title = tariff.getTariff_title();
+        this.tariff_cost = tariff.getTariff_cost();
+
+        Parameters parameters = Parameters.getInstance();
+
+        this.cashier_id=parameters.getCashier_id();
+        this.cashier_name=parameters.getCashier_name();
+        this.controller_id = parameters.getController_id();
+        this.enter_id = parameters.getEnter_id();
+        this.enter_title = parameters.getEnter_title();
+        this.app_id = parameters.getApp_id();
+        this.app_title = parameters.getApp_title();
+    }
+
     private String event_id = "7";
     private String event_title = "Party Party";
     private String event_from = "2016-12-01 09:45:27";

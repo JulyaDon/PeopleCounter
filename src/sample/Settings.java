@@ -6,9 +6,6 @@ import java.util.ArrayList;
  * Created by July on 11.12.2016.
  */
 public class Settings {
-    public Settings(){
-        obtainTariffs();
-    }
     private String app_title = "zone1";
     private int app_id = 111;
     private int event_id = 1;
@@ -19,10 +16,12 @@ public class Settings {
     private String counterApiLink = "http://tlcounter.cifr.us/api/cam-add";
     ArrayList<Tariffs> OurTariffs = new ArrayList<>();
     Tariffs AllTariffs = new Tariffs();
+    /*
     public void obtainTariffs(){
         AllTariffs.addBarcodes();
         OurTariffs.add(AllTariffs);
     }
+    */
 
     public ArrayList<Tariffs> getArrayOfTariffs(){
         return this.OurTariffs;

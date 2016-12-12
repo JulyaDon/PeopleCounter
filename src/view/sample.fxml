@@ -44,7 +44,7 @@
                                        <VBox>
                                           <children>
                                               <Label alignment="CENTER" prefHeight="17.0" prefWidth="51.0" text="Тариф 2" />
-                                              <Button fx:id="buttonTariff2" minHeight="150.0" minWidth="150.0" onAction="#onTariff1clicked" text="Tariff 2" />
+                                              <Button fx:id="buttonTariff2" minHeight="150.0" minWidth="150.0" onAction="#onTariff2clicked" text="Tariff 2" />
                                           </children>
                                        </VBox>
                                    </children>
