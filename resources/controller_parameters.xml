@@ -6,5 +6,6 @@
     <pulseWidthThreshold>1</pulseWidthThreshold>
     <dataSendTimeout>60000</dataSendTimeout>
     <sendData>true</sendData>
+    <showCounter>false</showCounter>
   </java.lang.Class>
 </object-stream>
