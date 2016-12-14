@@ -26,7 +26,7 @@
                            <children>
                               <VBox spacing="10.0">
                                  <children>
-                                      <fx:include fx:id="tabBarcode" source="barcode.fxml" />
+                                      <fx:include fx:id="tabBarcode" source="../view/barcode.fxml" />
                                     <TextArea fx:id="textAreaLatest" editable="false" prefWidth="300.0" promptText="Останні чеки" />
                                  </children>
                               </VBox>

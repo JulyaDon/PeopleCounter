@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="PeopleCounter">
+    <output-path>$PROJECT_DIR$/out/artifacts/PeopleCounter</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.Main" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="PeopleCounter.jar">
+        <element id="module-output" name="PeopleCounter" />
+      </element>
+    </root>
+  </artifact>
+</component>
