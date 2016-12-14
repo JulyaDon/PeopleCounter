@@ -115,7 +115,9 @@ public class Controller implements Initializable {
 
         tDateControl.start();
 
-        if(ourParameters.getShowCounter()==false){
+        Parameters parameters = Parameters.getInstance();
+
+        if(parameters.getShowCounter()==false){
             tabCounter.setDisable(true);
         }
 
