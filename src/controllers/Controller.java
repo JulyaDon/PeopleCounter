@@ -8,6 +8,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import model.DataClasses.Data;
@@ -35,14 +36,16 @@ public class Controller implements Initializable {
     @FXML Button buttonTariff1;
     @FXML Button buttonTariff2;
     @FXML TextArea textAreaLatest;
+    @FXML Tab tabCounter;
 
     Date date = new Date();
     //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     String todayDate = dateFormat.format(date).toString();
 
-    Report ourParameters = new Report(99999,99999,"sssssssssssssssssss",99999);;// = new Report();
+    Report ourReport = new Report(99999,99999,"sssssssssssssssssss",99999);;// = new Report();
     Settings ourSettings = new Settings();
+    Parameters ourParameters = Parameters.getInstance();
 
     String fileWithSettings = "resources/settings.xml";
     String fileReportsForToday = "resources/reports/" + todayDate + ".xml";
@@ -117,6 +120,10 @@ public class Controller implements Initializable {
         Main.addRunnable(() -> WriteReports(ReportList));
         //Відправка логу на сервер
         Main.addRunnable(() -> dataLogger.SendData());
+
+        if(ourParameters.getShowCounter()==false){
+            tabCounter.setDisable(true);
+        }
 
     }
 
