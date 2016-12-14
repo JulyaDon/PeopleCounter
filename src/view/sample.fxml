@@ -20,7 +20,7 @@
         <tabs>
           <Tab fx:id="tabCashDesk" onSelectionChanged="#tabSelectionChange" text="Каса">
                <content>
-                  <VBox fx:id="vboxTabCashDesk" onMouseClicked="#onMouseClick">
+                  <VBox fx:id="vboxTabCashDesk" onMouseClicked="#onMouseClick" spacing="10.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
@@ -35,7 +35,7 @@
                                        <VBox prefHeight="42.0" prefWidth="142.0">
                                           <children>
                                               <Label alignment="CENTER" prefHeight="17.0" prefWidth="53.0" text="Тариф 1" />
-                                              <Button fx:id="buttonTariff1" minHeight="150.0" minWidth="150.0" onAction="#onTariff1clicked" text="Tariff 1" />
+                                              <Button fx:id="buttonTariff1" minHeight="150.0" minWidth="150.0" onAction="#onTariff1clicked" text="ШТРИХ-КОД" />
                                           </children>
                                        <HBox.margin>
                                           <Insets />
@@ -44,7 +44,7 @@
                                        <VBox>
                                           <children>
                                               <Label alignment="CENTER" prefHeight="17.0" prefWidth="51.0" text="Тариф 2" />
-                                              <Button fx:id="buttonTariff2" minHeight="150.0" minWidth="150.0" onAction="#onTariff2clicked" text="Tariff 2" />
+                                              <Button fx:id="buttonTariff2" minHeight="150.0" minWidth="150.0" onAction="#onTariff2clicked" text="ПЛАТНО" />
                                           </children>
                                        </VBox>
                                    </children>
@@ -54,10 +54,14 @@
                               <Insets />
                            </opaqueInsets>
                            <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets />
                            </VBox.margin>
                         </HBox>
+                        <fx:include source="../view/SerialControlPanel.fxml" />
                      </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                   </VBox>
                </content>
           </Tab>
@@ -66,7 +70,6 @@
                 <VBox prefHeight="400.0" prefWidth="800.0" spacing="10.0">
                     <children>
                         <fx:include source="../view/PeopleDisplay.fxml" />
-                        <fx:include source="../view/SerialControlPanel.fxml" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

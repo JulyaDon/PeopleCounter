@@ -13,6 +13,13 @@ import javafx.scene.control.TextArea;
 import model.DataClasses.Data;
 import model.DataClasses.DataCollect;
 import model.DataClasses.DataLogger;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import sample.Parameters;
 import sample.Report;
 import sample.Settings;
@@ -37,19 +44,35 @@ public class Controller implements Initializable {
     @FXML TextArea textAreaLatest;
 
     Date date = new Date();
+
+    Date dateStart = new Date();
+
     //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     String todayDate = dateFormat.format(date).toString();
 
-    Report ourParameters = new Report(99999,99999,"sssssssssssssssssss",99999);;// = new Report();
-    Settings ourSettings = new Settings();
+    Settings ourSettings = Settings.getInstance();
 
-    String fileWithSettings = "resources/settings.xml";
+    //String fileWithSettings = "resources/settings.xml";
     String fileReportsForToday = "resources/reports/" + todayDate + ".xml";
-    XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>(fileWithSettings);
+    //XMLwriterReader<Settings> writerSettings = new XMLwriterReader<>(fileWithSettings);
     XMLwriterReader<ArrayList<Report>> writerReports = new XMLwriterReader<>(fileReportsForToday);
 
     ArrayList<Report> ReportList = new ArrayList<>();
+
+    ControllerSerialControlPanel controllerSerialControlPanel;
+    ControllerPeopleDisplay controllerPeopleDisplay;
+
+    Parameters parameters = Parameters.getInstance();
+
+    Timer t = new Timer(parameters.getDataSendTimeout(), e -> onTimer());
+    Timer tDateControl = new Timer(200, e -> onDateControlTimer());
+
+    public Sensor s1 = null;
+
+    DataCollect c = new DataCollect(100);
+    DataLogger dataLogger = new DataLogger();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,25 +82,6 @@ public class Controller implements Initializable {
 
         barcodeController = BarcodeController.instance;
         barcodeController.init(this);
-
-        //ЗАПИСЬ ПАРАМЕТРОВ В XML
-        /*
-        try {
-            writerParameters.WriteFile(ourParameters, Report.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
-        //СЧИТЫВАНИЕ ПАРАМЕТРОВ ИЗ XML
-        /*
-        try {
-            ourParameters = writerParameters.ReadFile(Report.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        */
 
         if (new File(fileReportsForToday).exists()) {
             //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
@@ -89,34 +93,25 @@ public class Controller implements Initializable {
                 e.printStackTrace();
             }
         }
-        //ReportList.add(new Report(99999,99999,"sssssssssssssssssss",99999));
-        if (!(new File(fileWithSettings)).exists()) {
-            //ЗАПИСЬ НАСТРОЕК В XML
-            try {
-                writerSettings.WriteFile(ourSettings, Settings.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
-        //СЧИТЫВАНИЕ НАСТРОЕК ИЗ XML
-        try {
-            ourSettings = writerSettings.ReadFile(Settings.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        buttonTariff1.setText(ourSettings.getArrayOfTariffs().get(1).getTariff_title());
-        buttonTariff2.setText(ourSettings.getArrayOfTariffs().get(2).getTariff_title());
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
 
         //Запис репортів по закриттю
         Main.addRunnable(() -> WriteReports(ReportList));
+        //Відправка репортів по закриттю
+        Main.addRunnable(() -> {
+            ReportSender reportSender = new ReportSender(ReportList);
+            reportSender.sendReport();});
         //Відправка логу на сервер
         Main.addRunnable(() -> dataLogger.SendData());
+
+        Main.addRunnable(() -> {
+            if (t.isRunning()) t.stop();
+            if (tDateControl.isRunning()) tDateControl.stop();
+        });
+
+        tDateControl.start();
 
     }
 
@@ -219,21 +214,54 @@ public class Controller implements Initializable {
         textAreaLatest.setScrollTop(Double.MAX_VALUE);
     }
 
+    private void WriteReports(String date, ArrayList<Report> reports){
+
+        String address = "resources/reports/" + date + ".xml";
+
+        XMLwriterReader<ArrayList<Report>> writer = new XMLwriterReader<>(address);
+
+        try {
+            writer.WriteFile(reports, Report.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        textAreaLatest.setScrollTop(Double.MAX_VALUE);
+    }
+
     /////////////////////////////////ANDREW'S PART////////////////////////////////////////
-    ControllerSerialControlPanel controllerSerialControlPanel;
-    ControllerPeopleDisplay controllerPeopleDisplay;
-
-    Parameters parameters = Parameters.getInstance();
-
-    Timer t = new Timer(parameters.getDataSendTimeout(), e -> onTimer());
-
-    public Sensor s1 = null;
-
-    DataCollect c = new DataCollect(100);
-    DataLogger dataLogger = new DataLogger();
 
     private void onTimer(){
         dataLogger.SendData();
+/*
+        if (s1 != null && s1.isConnected()) {
+            Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+            controllerSerialControlPanel.setStatus(dateFormat.format(date).toString() + ": Підключено");
+        }
+        else{
+            controllerSerialControlPanel.setStatus("НЕ ПІДКЛЮЧЕНО!");
+        }*/
+    }
+
+    private void onDateControlTimer() {
+        Date currentDate = new Date();
+
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        DateFormat dateFormatFull = new SimpleDateFormat("YYYY-MM-dd");
+
+        int dateOld = Integer.valueOf(dateFormat.format(dateStart).toString());
+        int dateCurrent = Integer.valueOf(dateFormat.format(currentDate).toString());
+
+        if (dateCurrent > dateOld){
+            WriteReports(dateFormatFull.format(dateStart).toString(),ReportList);
+            //Відправка репортів по закриттю
+            ReportSender reportSender = new ReportSender(ReportList);
+            reportSender.sendReport();
+
+            ReportList = new ArrayList<Report>();
+            dateStart = currentDate;
+        }
     }
 
     public void CreateSensor(){
