@@ -41,6 +41,5 @@
         </Barcodes>
       </sample.Tariffs>
     </OurTariffs>
-    <AllTariffs reference="../OurTariffs/sample.Tariffs"/>
   </java.lang.Class>
 </object-stream>

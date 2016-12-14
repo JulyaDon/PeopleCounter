@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import jssc.*;
 import sample.Main;
 
@@ -23,6 +24,7 @@ public class ControllerSerialControlPanel implements Initializable {
     Controller controller;
 
     @FXML private ChoiceBox choiceBoxPortsList;
+    @FXML private Label labelStatus;
 
     public static ControllerSerialControlPanel Instance;
 
@@ -49,7 +51,12 @@ public class ControllerSerialControlPanel implements Initializable {
         this.controller = controller;
     }
 
-    public void onConnectClick(ActionEvent actionEvent) {
+    public void setStatus(String status){
+        labelStatus.setText(status);
+    }
+
+    @FXML
+    private void onConnectClick(ActionEvent actionEvent) {
         StartConnection();
         controller.CreateSensor();
         //sensor = new Sensor(choiceBoxPortsList.getValue().toString());
@@ -72,10 +79,11 @@ public class ControllerSerialControlPanel implements Initializable {
     private void StartConnection() {
         try {
             //Открываем порт
-            if (serialPort==null) {
+            //if (serialPort==null) {
                 serialPort = new SerialPort(choiceBoxPortsList.getValue().toString());
                 serialPort.openPort();
-            }
+
+            //}
             //Выставляем параметры
             //serialPort.setParams(SerialPort.BAUDRATE_9600,
             //        SerialPort.DATABITS_8,

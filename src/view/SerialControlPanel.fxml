@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -12,8 +13,8 @@
          </HBox.margin>
       </Label>
       <ChoiceBox fx:id="choiceBoxPortsList" prefWidth="150.0" />
-      <Button mnemonicParsing="false" text="Connect" onAction="#onConnectClick" />
-      <Button mnemonicParsing="false" text="Disconnect" onAction="#onDisconnectClick"/>
-      <Button mnemonicParsing="false" text="Refresh" onAction="#onRefreshClick" />
+      <Button mnemonicParsing="false" onAction="#onConnectClick" text="Connect" />
+      <Button mnemonicParsing="false" onAction="#onDisconnectClick" text="Disconnect" />
+      <Button mnemonicParsing="false" onAction="#onRefreshClick" text="Refresh" />
    </children>
 </HBox>

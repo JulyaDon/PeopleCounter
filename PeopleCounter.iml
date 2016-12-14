@@ -11,5 +11,6 @@
     <orderEntry type="library" name="jSSC-2.8" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="xstream" level="project" />
+    <orderEntry type="library" name="java-json" level="project" />
   </component>
 </module>
