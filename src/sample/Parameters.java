@@ -38,7 +38,7 @@ public class Parameters {
     private int pulseWidthThreshold;
     private int dataSendTimeout;
     private boolean sendData;
-
+    private boolean showCounter = true;
     /*
     private int cashier_id;
     private String cashier_name;
@@ -97,7 +97,15 @@ public class Parameters {
     public void setSendData(boolean sendData) {
         this.sendData = sendData;
     }
-/*
+
+    public void setShowCounter(boolean showCounter){
+        this.showCounter = showCounter;
+    }
+
+    public boolean getShowCounter(){
+        return this.showCounter;
+    }
+    /*
     public int getCashier_id() {
         return cashier_id;
     }

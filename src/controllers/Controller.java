@@ -8,6 +8,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import model.DataClasses.Data;
@@ -42,6 +43,7 @@ public class Controller implements Initializable {
     @FXML Button buttonTariff1;
     @FXML Button buttonTariff2;
     @FXML TextArea textAreaLatest;
+    @FXML Tab tabCounter;
 
     Date date = new Date();
 
@@ -112,6 +114,10 @@ public class Controller implements Initializable {
         });
 
         tDateControl.start();
+
+        if(ourParameters.getShowCounter()==false){
+            tabCounter.setDisable(true);
+        }
 
     }
 
