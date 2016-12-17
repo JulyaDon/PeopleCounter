@@ -64,6 +64,7 @@ public class Controller implements Initializable {
 
     ControllerSerialControlPanel controllerSerialControlPanel;
     ControllerPeopleDisplay controllerPeopleDisplay;
+    ControllerTicketReport controllerTicketReport;
 
     Parameters parameters = Parameters.getInstance();
 
@@ -81,6 +82,7 @@ public class Controller implements Initializable {
 
         controllerSerialControlPanel = ControllerSerialControlPanel.Instance;
         controllerPeopleDisplay = ControllerPeopleDisplay.Instance;
+        controllerTicketReport = ControllerTicketReport.Instance;
 
         barcodeController = BarcodeController.instance;
         barcodeController.init(this);
@@ -95,9 +97,11 @@ public class Controller implements Initializable {
                 e.printStackTrace();
             }
         }
-
         controllerPeopleDisplay.init(this);
         controllerSerialControlPanel.init(this);
+        controllerTicketReport.init(this);
+
+
 
         //Запис репортів по закриттю
         Main.addRunnable(() -> WriteReports(ReportList));

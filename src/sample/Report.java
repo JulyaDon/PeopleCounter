@@ -167,4 +167,16 @@ public class Report {
     private String ticket_canceled_at = "null";
     private int app_id;// = 1;
     private String app_title;// = "Zone 1";
+
+    public int getTariff_id() {
+        return tariff_id;
+    }
+
+    public String getTariff_title() {
+        return tariff_title;
+    }
+
+    public int getTariff_cost() {
+        return tariff_cost;
+    }
 }
