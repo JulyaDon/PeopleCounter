@@ -104,7 +104,7 @@ public class Controller implements Initializable {
         //Відправка репортів по закриттю
         Main.addRunnable(() -> {
             ReportSender reportSender = new ReportSender(ReportList);
-            reportSender.sendReport();});
+            reportSender.sendReportTest();});
         //Відправка логу на сервер
         Main.addRunnable(() -> dataLogger.SendData());
 

@@ -106,6 +106,40 @@ public class Report {
         return jsonObject;
     }
 
+    @Override
+    public String toString(){
+        String result =
+        "{" + "\"event_id\":" + "\"" + event_id + "\"" +
+        ",\"event_title\":" + "\"" + event_title + "\"" +
+        ",\"event_from\":" + "\"" + event_from + "\"" +
+        ",\"event_to\":" + "\"" + event_to + "\"" +
+        ",\"ticket_barcode\":" + ticket_barcode +
+        ",\"ticket_active\":" + ticket_active +
+        ",\"ticket_activated_at\":" + "\"" + ticket_activated_at + "\"" +
+        ",\"tariff_id\":" + tariff_id +
+        ",\"tariff_title\":" + "\"" + tariff_title + "\"" +
+        ",\"tariff_color\":" + "\"" + tariff_color + "\"" +
+        ",\"tariff_icon\":" + "\"" + tariff_icon + "\"" +
+        ",\"ticket_type_id\":" + ticket_type_id +
+        ",\"ticket_type_title\":" + "\"" + ticket_type_title + "\"" +
+        ",\"tariff_cost\":" + tariff_cost +
+        ",\"currency_title\":" + "\"" + currency_title + "\"" +
+        ",\"cashier_id\":" + cashier_id +
+        ",\"cashier_name\":" + "\"" + cashier_name + "\"" +
+        ",\"cash_id\":" + cash_id +
+        ",\"cash_title\":" + "\"" + cash_title + "\"" +
+        ",\"controller_id\":" + controller_id +
+        ",\"controller_name\":" + "\"" + controller_name + "\"" +
+        ",\"enter_id\":" + enter_id +
+        ",\"enter_title\":" + "\"" + enter_title + "\"" +
+        ",\"ticket_cancel\":" + ticket_cancel +
+        ",\"ticket_canceled_at\":" + "\"" + ticket_canceled_at + "\"" +
+        ",\"app_id\":" + app_id +
+        ",\"app_title\":" + "\"" + app_title + "\"" + "}";
+
+        return result;
+    }
+
     private String event_id = "7";
     private String event_title = "Party Party";
     private String event_from = "2016-12-01 09:45:27";
