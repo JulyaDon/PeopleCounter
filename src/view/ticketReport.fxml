@@ -14,6 +14,7 @@
          </opaqueInsets>
          <children>
             <ChoiceBox fx:id="CBticketData" prefWidth="150.0" />
+            <Button mnemonicParsing="false" onAction="#onRefreshClick" text="Оновити" />
          </children>
       </HBox>
       <TextArea fx:id="TAticketsPerDay" editable="false" prefHeight="345.0" prefWidth="780.0" />

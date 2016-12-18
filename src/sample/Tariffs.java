@@ -6,11 +6,13 @@ import java.util.ArrayList;
  * Created by July on 11.12.2016.
  */
 public class Tariffs {
-    private String tariff_title = "Полный";
+    private String tariff_title = "Full";
     private int tariff_id = 1;
-    private int tariff_cost = 4;
+    private int tariff_cost = 3;
     boolean show = false; // скрытый	 тариф, не будет показан кассиру
     ArrayList<Integer> Barcodes = new ArrayList<>();
+
+
 
     /*
     public void addBarcodes(){

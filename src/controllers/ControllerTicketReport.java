@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -44,58 +45,64 @@ public class ControllerTicketReport {
 
         //обробляемо подію зміни значення ChoiceBox-a
         CBticketData.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> {
+            getReport();
 
-            if (CBticketData.getItems().get((Integer) number2) != null) {
-                TAticketsPerDay.setText("-------------------\n");
-
-                //отримуємо текст вибраного елемента з ChoiceBox-a
-                int temp = CBticketData.getSelectionModel().getSelectedIndex();
-                String neededData = CBticketData.getItems().get(temp).toString();
-
-                String fileReport = "resources/reports/" + neededData + ".xml";
-                XMLwriterReader<ArrayList<Report>> writerReports = new XMLwriterReader<>(fileReport);
-
-                //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
-                try {
-                    reportList = writerReports.ReadFile(Report.class);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-                ArrayList<String> tariffs = new ArrayList<>();
-                //отримуємо імена існуючих в репорті тарифів
-                for (Report rep : reportList
-                        ) {
-                    tariffs.add(rep.getTariff_title());
-                    for (int i = 0; i < tariffs.size() - 1; i++) {
-                        if (tariffs.get(i) == rep.getTariff_title()) {
-                            tariffs.remove(i);
-                        }
-                    }
-                }
-
-                //підраховуємо і виводимо дані по кожному тарифу
-                for (String s : tariffs
-                        ) {
-                    int cost = 0;
-                    int ticketsNumber = 0;
-                    for (Report r : reportList
-                            ) {
-                        if (r.getTariff_title() == s) {
-                            cost += r.getTariff_cost();
-                            ticketsNumber += 1;
-                        }
-                    }
-                    TAticketsPerDay.setText(TAticketsPerDay.getText()
-                            + "Имя тарифа: " + s + "\n"
-                            + "Цена: " + cost / ticketsNumber + "\n"
-                            + "Количество проданных билетов: " + ticketsNumber + "\n"
-                            + "Общая стоимость билетов: " + cost + "\n-------------------" + "\n");
-                }
-            }
         });
 
+    }
+
+    private void getReport(){
+        if (/*CBticketData.getItems().get((Integer) number2)*/ CBticketData.getValue() != null) {
+            TAticketsPerDay.setText("-------------------\n");
+
+            //отримуємо текст вибраного елемента з ChoiceBox-a
+            int temp = CBticketData.getSelectionModel().getSelectedIndex();
+            String neededData = CBticketData.getItems().get(temp).toString();
+
+            String fileReport = "resources/reports/" + neededData + ".xml";
+            XMLwriterReader<ArrayList<Report>> writerReports = new XMLwriterReader<>(fileReport);
+
+            //СЧИТЫВАНИЕ РЕПОРТОВ ИЗ XML
+            try {
+                reportList = writerReports.ReadFile(Report.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            ArrayList<String> tariffs = new ArrayList<>();
+            //отримуємо імена існуючих в репорті тарифів
+            for (Report rep : reportList
+                    ) {
+                tariffs.add(rep.getTariff_title());
+                for (int i = 0; i < tariffs.size() - 1; i++) {
+                    if (tariffs.get(i) == rep.getTariff_title()) {
+                        tariffs.remove(i);
+                    }
+                }
+            }
+
+            //підраховуємо і виводимо дані по кожному тарифу
+            for (String s : tariffs) {
+                int cost = 0;
+                int ticketsNumber = 0;
+                for (Report r : reportList) {
+                    if (r.getTariff_title() == s) {
+                        cost += r.getTariff_cost();
+                        ticketsNumber += 1;
+                    }
+                }
+                TAticketsPerDay.setText(TAticketsPerDay.getText()
+                        + "Назва тарифу: " + s + "\n"
+                        + "Вартість: " + cost / ticketsNumber + "\n"
+                        + "Кількість проданих квитків: " + ticketsNumber + "\n"
+                        + "Загальна вартість квитків: " + cost + "\n-------------------" + "\n");
+            }
+        }
+    }
+
+    public void onRefreshClick(ActionEvent actionEvent) {
+        getReport();
     }
 }

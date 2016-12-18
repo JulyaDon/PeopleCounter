@@ -14,7 +14,7 @@ public class XMLwriterReader <T> {
         this.address = address;
     }
 
-    XStream xstream = new XStream(new DomDriver());
+    XStream xstream = new XStream(new DomDriver("UTF-8"));
 
     public void WriteFile(T object, Class c) throws IOException {
         xstream.alias(c.getClass().getName(), c);

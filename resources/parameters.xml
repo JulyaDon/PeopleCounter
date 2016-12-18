@@ -8,11 +8,11 @@
     <ticket__active>1</ticket__active>
     <ticket__activated__at>2016-12-12 17:44:25</ticket__activated__at>
     <tariff__id>1</tariff__id>
-    <tariff__title>Полный</tariff__title>
+    <tariff__title>Full</tariff__title>
     <tariff__color>success</tariff__color>
     <tariff__icon>fa fa-man</tariff__icon>
     <ticket__type__id>3</ticket__type__id>
-    <ticket__type__title>Обычный</ticket__type__title>
+    <ticket__type__title>Typical</ticket__type__title>
     <tariff__cost>4</tariff__cost>
     <currency__title>UAH</currency__title>
     <cashier__id>111</cashier__id>

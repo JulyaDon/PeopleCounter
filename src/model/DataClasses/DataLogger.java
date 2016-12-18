@@ -76,26 +76,31 @@ public class DataLogger implements DataCollect.ICountChangeHandler {
         Calendar cal = Calendar.getInstance();
         int hours = 0;
 
-        Data currentData = list.get(0).clone();
-        cal.setTime(currentData.getDate());
-        hours = cal.get(Calendar.HOUR_OF_DAY);
+        if (list.size()>1) {
 
-        for (int i = 1; i < list.size(); i++) {
-            cal.setTime(list.get(i).getDate());
-            int currentHours = cal.get(Calendar.HOUR_OF_DAY);
+            Data currentData = list.get(0).clone();
+            cal.setTime(currentData.getDate());
+            hours = cal.get(Calendar.HOUR_OF_DAY);
 
-            if (hours == currentHours ){
-                if ((currentData.isTransmitted() == list.get(i).isTransmitted()))
-                    currentData.setIn(currentData.getIn()+list.get(i).getIn());
-                else
-                    newList.add(list.get(i).clone());
-            } else if (hours < currentHours){
-                newList.add(currentData.clone());
-                currentData = list.get(i).clone();
-                hours = currentHours;
+            for (int i = 1; i < list.size(); i++) {
+                cal.setTime(list.get(i).getDate());
+                int currentHours = cal.get(Calendar.HOUR_OF_DAY);
+
+                if (hours == currentHours) {
+                    if ((currentData.isTransmitted() == list.get(i).isTransmitted()))
+                        currentData.setIn(currentData.getIn() + list.get(i).getIn());
+                    else
+                        newList.add(list.get(i).clone());
+                } else if (hours < currentHours) {
+                    newList.add(currentData.clone());
+                    currentData = list.get(i).clone();
+                    hours = currentHours;
+                }
             }
+            newList.add(currentData.clone());
+            return newList;
+        } else {
+            return list;
         }
-        newList.add(currentData.clone());
-        return newList;
     }
 }
