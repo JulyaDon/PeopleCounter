@@ -15,6 +15,7 @@
          <children>
             <ChoiceBox fx:id="CBticketData" prefWidth="150.0" />
             <Button mnemonicParsing="false" onAction="#onRefreshClick" text="Оновити" />
+            <Button mnemonicParsing="false" onAction="#onSendClick" text="Надіслати звіт за день" />
          </children>
       </HBox>
       <TextArea fx:id="TAticketsPerDay" editable="false" prefHeight="345.0" prefWidth="780.0" />

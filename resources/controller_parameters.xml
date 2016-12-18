@@ -2,7 +2,7 @@
   <java.lang.Class>
     <location>zone1</location>
     <apiURL>http://tlcounter.cifr.us/api/cam-add</apiURL>
-    <acceptLevel>150</acceptLevel>
+    <acceptLevel>20</acceptLevel>
     <pulseWidthThreshold>1</pulseWidthThreshold>
     <dataSendTimeout>60000</dataSendTimeout>
     <sendData>true</sendData>

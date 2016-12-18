@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import sample.Report;
+import sample.ReportSender;
 import sample.XMLwriterReader;
 
 import java.io.File;
@@ -104,5 +105,12 @@ public class ControllerTicketReport {
 
     public void onRefreshClick(ActionEvent actionEvent) {
         getReport();
+    }
+
+    public void onSendClick(ActionEvent actionEvent) {
+        getReport();
+        ReportSender reportSender = new ReportSender(reportList);
+        reportSender.sendReportTest();
+        controller.dataLogger.SendData();
     }
 }

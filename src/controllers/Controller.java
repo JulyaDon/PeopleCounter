@@ -74,7 +74,7 @@ public class Controller implements Initializable {
     public Sensor s1 = null;
 
     DataCollect c = new DataCollect(100);
-    DataLogger dataLogger = new DataLogger();
+    public DataLogger dataLogger = new DataLogger();
 
 
     @Override
